@@ -4,6 +4,14 @@ import TodoList from './TodoList.js'
 
 function App() {
   return (
+    <>
+    {
+      (()=> {
+        console.log(`node env = ${process.env.NODE_ENV}`)
+        console.log(`REACT_APP_DATA_API = ${process.env.REACT_APP_DATA_API}`)
+      })()
+    }
+
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -18,10 +26,12 @@ function App() {
         >
           hello world
         </a>
-        
+
         <TodoList/>
       </header>
     </div>
+    </>
+    
   );
 }
 
