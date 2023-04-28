@@ -1,42 +1,32 @@
-import { useEffect, useState } from 'react'
+import React from 'react';
 import './App.css';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Rooms from './Rooms';
 
 function App() {
-  const [pageName, setPageNmae] = useState('');
-  
-  useEffect(() => {
-    window.onpopstate = function (event) {
-      console.log(event.state);
-      setPageNmae(event.state);
-    }
-  }, []);
-
-  function onClick(pageName) {
-    window.history.pushState(pageName, '', '/' + pageName);
-    setPageNmae(pageName);
-  }
-
   return (
-    <div>
-      <button onClick={() => onClick('page1')}> page 1</button>
-      <button onClick={() => onClick('page2')}> page 2</button>
-      {!pageName && <Home />}
-      {pageName === 'page1' && <Page1/>}
-      {pageName === 'page2' && <Page2/>}
-    </div>
+    <BrowserRouter>
+      <div style={{ padding: 20, border: '5px solid gray' }}>
+        <Link to="/">home</Link> <br />
+        <Link to="/photo">사진</Link> <br />
+        <Link to="/rooms">방 소개</Link> <br />
+
+        <Routes>
+          <Route exact path="/" Component={Home} />
+          <Route exact path="/photo" Component={Photo} />
+          <Route exact path="/rooms" element={(()=>Rooms('blue'))()} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
-function Home(){
-  return <h2> this is hoempage</h2>
+function Home() {
+  return <h2> this is homepage</h2>
 }
 
-function Page1(){
-  return <h2>this is page 1</h2>
-}
-
-function Page2(){
-  return <h2>this is page 2</h2>
+function Photo() {
+  return <h2>this is photo page</h2>
 }
 
 export default App;
