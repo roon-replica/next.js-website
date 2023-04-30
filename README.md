@@ -20,3 +20,10 @@
     - UI with cards
     - infinite slides
     - animations
+
+### 설정
+- `npx create-next-app@latest --typescript`
+
+  
+### references 
+- https://nextjs.org/docs/getting-started
