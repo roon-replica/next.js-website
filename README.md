@@ -27,3 +27,8 @@
   
 ### references 
 - https://nextjs.org/docs/getting-started
+- https://react.dev/learn/describing-the-ui
+- [typescript에서 fetch 사용하기](https://www.newline.co/@bespoyasov/how-to-use-fetch-with-typescript--a81ac257)
+
+### open api
+- [경기데이터드림 버스 정류장 현황](https://data.gg.go.kr/portal/data/service/selectServicePage.do?page=3&rows=10&sortColumn=VIEW_CNT&sortDirection=DESC&infId=GDKWAGWYRKJYIRVX110226832213&infSeq=1&order=3&srvCd=A)
