@@ -9,7 +9,7 @@ export default function Header({ header, headerTextClassName }: Props) {
   return (
     <>
       <Head>
-        <title>This is head of your page</title>
+        <title>Todo List!</title>
         <link rel="icon" href="/images/meow-popcorn.gif" />
       </Head>
       <header className="ml-6 max-w-screen-xl bg-gray body-font border-b border-gray-200">

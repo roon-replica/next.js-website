@@ -24,20 +24,28 @@
       - [ ] 모달 validation
         - [ ] 모든 필드 입력
         - [ ] 입력 길이 제한 및 유효한 문자 검사
+    - 기타
+      - [x] redux 설정 (redux-toolkit, typescript)
     - [ ] 화면 이외의 것들
       - [ ] 단순 데이터 저장용 처리 서버 만들고, 서버로부터 데이터받는걸로 바꾸기
       - [ ] 환경변수 (local, local-docker, aws 환경)
       - [ ] 도커파일 작성해보기
       - [ ] aws 배포하기
+      - [ ] github action workflow 작성해서 CI/CD 하기
 
 ### 설정
 
 - `npx create-next-app@latest --typescript`
 - css
+
   - tailwind
-    `yarn add tailwindcss`  
-    [tailwind css install](https://tailwindcss.com/docs/installation)
+    - `yarn add tailwindcss`
+    - [tailwind css install](https://tailwindcss.com/docs/installation)
   - [daisy ui](https://daisyui.com/docs/install/)
+
+- redux
+  - `yarn add redux`
+  - `yarn add @reduxjs/toolkit`
 
 ### references
 

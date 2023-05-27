@@ -3,11 +3,15 @@ import CardHeader from "@/components/todo-list/CardHeader";
 import CardType from "@/components/todo-list/constants/CardType";
 import TodoModal, { TodoModalInputs } from "@/components/todo-list/TodoModal";
 
+import { useAppDispatch } from "@/global-store/hooks";
+import { add } from "@/global-store/todo-list/todoSlice";
+
 const Main = () => {
+  //   const todo = useAppSelector((state) => state.todo);
+  const dispatch = useAppDispatch();
+
   const createNewTodo = (modalInputs: TodoModalInputs) => {
-    console.log(
-      `create new todo! ${modalInputs.title} ${modalInputs.assignee} ${modalInputs.priority}`
-    );
+    dispatch(add(modalInputs));
   };
 
   return (
