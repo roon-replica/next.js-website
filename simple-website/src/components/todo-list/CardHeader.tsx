@@ -1,6 +1,6 @@
 import CardType from "./constants/CardType";
 
-interface CardHeaderProps {
+export interface CardHeaderProps {
   type: CardType;
 }
 

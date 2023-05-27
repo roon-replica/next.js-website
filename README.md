@@ -14,12 +14,21 @@
 - write a simple website app with...
   - [todo-list 프로그램](https://docs.google.com/presentation/d/163ZmA14C4OGB85QnlXMOo9vO9KFN3YzXYbTYPW7wngs/edit#slide=id.p4)
     - [ ] todo-list 메인 화면
+      - [x] 상단
+      - [ ] 할 일 목록 표시
+      - [ ] 할 일 삭제
+      - [ ] 할 일 이동
     - [ ] 할 일 등록 모달
-    - [ ] 모달 validation
-    - [ ] 단순 데이터 저장용 처리 서버 만들고, 서버로부터 데이터받는걸로 바꾸기
-    - [ ] 환경변수 (local, local-docker, aws 환경)
-    - [ ] 도커파일 작성해보기
-    - [ ] aws 배포하기
+      - [x] 할 일 생성
+      - [ ] 할 일 수정
+      - [ ] 모달 validation
+        - [ ] 모든 필드 입력
+        - [ ] 입력 길이 제한 및 유효한 문자 검사
+    - [ ] 화면 이외의 것들
+      - [ ] 단순 데이터 저장용 처리 서버 만들고, 서버로부터 데이터받는걸로 바꾸기
+      - [ ] 환경변수 (local, local-docker, aws 환경)
+      - [ ] 도커파일 작성해보기
+      - [ ] aws 배포하기
 
 ### 설정
 
