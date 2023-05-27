@@ -32,9 +32,10 @@
 
 ### references
 
-- https://nextjs.org/docs/getting-started
-- https://react.dev/learn/describing-the-ui
+- [react.js](https://react.dev/learn/describing-the-ui)
+- [next.js](https://nextjs.org/docs/getting-started)
 - [typescript에서 fetch 사용하기](https://www.newline.co/@bespoyasov/how-to-use-fetch-with-typescript--a81ac257)
+- [tailwind 검색해서 쓰셈](https://tailwindcss.com/docs/font-size)
 
 ### open api
 

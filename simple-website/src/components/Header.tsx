@@ -2,9 +2,10 @@ import Head from "next/head";
 
 interface Props {
   header: string;
+  headerTextClassName: string;
 }
 
-export default function Header({ header }: Props) {
+export default function Header({ header, headerTextClassName }: Props) {
   return (
     <>
       <Head>
@@ -14,7 +15,7 @@ export default function Header({ header }: Props) {
       <header className="ml-6 max-w-screen-xl bg-gray body-font border-b border-gray-200">
         <div className="container flex flex-wrap p-5 flex-col md:flex-row items-center">
           <div className="flex title-font font-medium items-center text-gray-800 dark:text-gray-100 mb-4 md:mb-0">
-            <span className="ml-3 text-xl">{header}</span>
+            <span className={headerTextClassName}>{header}</span>
           </div>
         </div>
       </header>
