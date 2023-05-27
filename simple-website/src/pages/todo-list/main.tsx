@@ -1,16 +1,19 @@
 import Header from "@/components/Header";
 import CardHeader from "@/components/todo-list/CardHeader";
-import CardType from "@/components/todo-list/constants/CardType";
-import TodoModal, { TodoModalInputs } from "@/components/todo-list/TodoModal";
+import TodoCardType from "@/components/todo-list/constants/TodoCardType";
+import TodoModal from "@/components/todo-list/TodoModal";
 
-import { useAppDispatch } from "@/global-store/hooks";
+// import { useAppDispatch } from "@/global-store/hooks";
 import { add } from "@/global-store/todo-list/todoSlice";
 
-const Main = () => {
-  //   const todo = useAppSelector((state) => state.todo);
-  const dispatch = useAppDispatch();
+import { CardProps } from "@/components/todo-list/Card";
+import TodoColumn from "@/components/todo-list/TodoColumn";
+import { useDispatch } from "react-redux";
 
-  const createNewTodo = (modalInputs: TodoModalInputs) => {
+const Main = () => {
+  const dispatch = useDispatch();
+
+  const createNewTodo = (modalInputs: CardProps) => {
     dispatch(add(modalInputs));
   };
 
@@ -25,9 +28,15 @@ const Main = () => {
         <TodoModal onSave={createNewTodo} />
       </div>
       <div className="flex flex-wrap">
-        <CardHeader type={CardType.TODO} />
-        <CardHeader type={CardType.DOING} />
-        <CardHeader type={CardType.DONE} />
+        <CardHeader type={TodoCardType.TODO} />
+        <CardHeader type={TodoCardType.DOING} />
+        <CardHeader type={TodoCardType.DONE} />
+      </div>
+
+      <div className="flex flex-wrap">
+        <TodoColumn type={TodoCardType.TODO} />
+        <TodoColumn type={TodoCardType.DOING} />
+        <TodoColumn type={TodoCardType.DONE} />
       </div>
     </>
   );

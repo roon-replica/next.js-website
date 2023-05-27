@@ -1,7 +1,7 @@
-export enum CardType {
+export enum TodoCardType {
   TODO = "TODO",
   DOING = "DOING",
   DONE = "DONE",
 }
 
-export default CardType;
+export default TodoCardType;

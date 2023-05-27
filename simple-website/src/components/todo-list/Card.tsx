@@ -1,27 +1,34 @@
-import CardType from "./constants/CardType";
+import PriorityType from "./constants/PriorityType";
+import TodoCardType from "./constants/TodoCardType";
 
 export interface CardProps {
+  id: string;
   title: string;
-  description: string;
-  type: CardType;
+  assignee: string;
+  priority: PriorityType;
+  type: TodoCardType;
 }
 
 const Card: React.FunctionComponent<CardProps> = ({
+  id,
   title,
-  description,
+  assignee,
+  priority,
   type,
 }) => {
   return (
-    <div className="flex flex-col justify-center items-centermx-4 my-2">
-      <div className="card w-48 bg-emerald-500 text-primary-content rounded-none">
+    <div className="flex flex-col justify-center items-center mx-4 my-2">
+      <div className="card w-48 bg-sky-400 text-primary-content rounded-none">
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
-          <p>{description}</p>
-          <div className="card-actions justify-end">
-            {type !== CardType.DONE ? (
-              <button className="btn">"move right"</button>
+          <p className="card-actions">
+            <span>
+              {assignee} {priority}
+            </span>
+            {type !== TodoCardType.DONE ? (
+              <button className="btn btn-sm"> Right </button>
             ) : null}
-          </div>
+          </p>
         </div>
       </div>
     </div>

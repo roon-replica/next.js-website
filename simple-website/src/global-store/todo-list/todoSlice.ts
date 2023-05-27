@@ -1,22 +1,25 @@
-import PriorityType from "@/components/todo-list/constants/PriorityType";
+import { CardProps } from "@/components/todo-list/Card";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../globalStore";
 
-export interface TodoState { title: string;  assignee: string;
-    priority: PriorityType; }
+export interface TodoListState {
+    todoList: Array<CardProps>
+}
 
-const initialState: TodoState = { title: '', assignee: '', priority: PriorityType.FIRST}
+const initialState: TodoListState = { 
+    todoList: []
+}
 
 export const todoSlice = createSlice({
     name: 'todo',
     initialState,
     reducers: {
-        add: (state, action: PayloadAction<TodoState>) => {
-            console.log('[todoSlice.add]', state, action)
+        add: (state, action: PayloadAction<CardProps>) => {
+            state.todoList.push(action.payload)
+            console.log('[todoSlice.add]', state.todoList)
         }
     }
 })
 
 export const {add} = todoSlice.actions
-export const selectTodo = (state:RootState) => state.todo
+// export const selectTodo = (state:RootState) => state.todo
 export default todoSlice.reducer

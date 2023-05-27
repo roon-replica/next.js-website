@@ -1,14 +1,17 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { CardProps } from "./Card";
 import PriorityType from "./constants/PriorityType";
+import TodoCardType from "./constants/TodoCardType";
 
-export interface TodoModalInputs {
-  title: string;
-  assignee: string;
-  priority: PriorityType;
-}
+// export interface TodoModalInputs {
+//   title: string;
+//   assignee: string;
+//   priority: PriorityType;
+// }
 
 interface TodoModalProps {
-  onSave: (inputs: TodoModalInputs) => void; // todo: onSave 콜백 꼭 밖에서 주는 Props로 받아야 할까?
+  onSave: (inputs: CardProps) => void; // todo: onSave 콜백 꼭 밖에서 주는 Props로 받아야 할까?
 }
 
 const TodoModal: React.FunctionComponent<TodoModalProps> = ({ onSave }) => {
@@ -33,14 +36,23 @@ const TodoModal: React.FunctionComponent<TodoModalProps> = ({ onSave }) => {
   };
 
   const saveData = () => {
-    onSave({ title: title, assignee: assignee, priority: priority });
+    onSave({
+      id: uuidv4(),
+      title: title,
+      assignee: assignee,
+      priority: priority,
+      type: TodoCardType.TODO,
+    });
 
     closeModal();
   };
 
   return (
     <div className="flex flex-col mx-auto justify-center items-center">
-      <button onClick={openModal} className="btn bg-blue-500 rounded-none">
+      <button
+        onClick={openModal}
+        className="btn bg-blue-500 rounded-none border-none"
+      >
         새로운 TODO 등록
       </button>
 
