@@ -16,11 +16,19 @@
     - [ ] todo-list 메인 화면
     - [ ] 할 일 등록 모달
     - [ ] 모달 validation
-    - [ ] 서버로부터 데이터받는걸로 바꾸기
+    - [ ] 단순 데이터 저장용 처리 서버 만들고, 서버로부터 데이터받는걸로 바꾸기
+    - [ ] 환경변수 (local, local-docker, aws 환경)
+    - [ ] 도커파일 작성해보기
+    - [ ] aws 배포하기
 
 ### 설정
 
 - `npx create-next-app@latest --typescript`
+- css
+  - tailwind
+    `yarn add tailwindcss`  
+    [tailwind css install](https://tailwindcss.com/docs/installation)
+  - [daisy ui](https://daisyui.com/docs/install/)
 
 ### references
 
