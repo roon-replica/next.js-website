@@ -15,9 +15,9 @@
   - [todo-list 프로그램](https://docs.google.com/presentation/d/163ZmA14C4OGB85QnlXMOo9vO9KFN3YzXYbTYPW7wngs/edit#slide=id.p4)
     - [ ] todo-list 메인 화면
       - [x] 상단
-      - [ ] 할 일 목록 표시
+      - [x] 할 일 목록 표시
       - [ ] 할 일 삭제
-      - [ ] 할 일 이동
+      - [x] 할 일 이동
     - [ ] 할 일 등록 모달
       - [x] 할 일 생성
       - [ ] 할 일 수정

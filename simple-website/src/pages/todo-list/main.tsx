@@ -8,10 +8,13 @@ import { add } from "@/global-store/todo-list/todoSlice";
 
 import { CardProps } from "@/components/todo-list/Card";
 import TodoColumn from "@/components/todo-list/TodoColumn";
-import { useDispatch } from "react-redux";
+
+import { useAppDispatch, useAppSelector } from "@/global-store/hooks";
 
 const Main = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const todoList = useAppSelector((state) => state.todo.todoList);
+  console.log(todoList);
 
   const createNewTodo = (modalInputs: CardProps) => {
     dispatch(add(modalInputs));
@@ -34,9 +37,15 @@ const Main = () => {
       </div>
 
       <div className="flex flex-wrap">
-        <TodoColumn type={TodoCardType.TODO} />
-        <TodoColumn type={TodoCardType.DOING} />
-        <TodoColumn type={TodoCardType.DONE} />
+        <TodoColumn
+          todoList={todoList.filter((todo) => todo.type === TodoCardType.TODO)}
+        />
+        <TodoColumn
+          todoList={todoList.filter((todo) => todo.type === TodoCardType.DOING)}
+        />
+        <TodoColumn
+          todoList={todoList.filter((todo) => todo.type === TodoCardType.DONE)}
+        />
       </div>
     </>
   );

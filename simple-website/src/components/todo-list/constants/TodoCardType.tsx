@@ -1,7 +1,7 @@
 export enum TodoCardType {
-  TODO = "TODO",
-  DOING = "DOING",
-  DONE = "DONE",
+  TODO = 0,
+  DOING = 1,
+  DONE = 2,
 }
 
 export default TodoCardType;

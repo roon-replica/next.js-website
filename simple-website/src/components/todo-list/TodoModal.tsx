@@ -4,12 +4,6 @@ import { CardProps } from "./Card";
 import PriorityType from "./constants/PriorityType";
 import TodoCardType from "./constants/TodoCardType";
 
-// export interface TodoModalInputs {
-//   title: string;
-//   assignee: string;
-//   priority: PriorityType;
-// }
-
 interface TodoModalProps {
   onSave: (inputs: CardProps) => void; // todo: onSave 콜백 꼭 밖에서 주는 Props로 받아야 할까?
 }

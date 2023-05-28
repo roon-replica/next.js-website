@@ -9,13 +9,14 @@ export interface CardProps {
   type: TodoCardType;
 }
 
-const Card: React.FunctionComponent<CardProps> = ({
-  id,
-  title,
-  assignee,
-  priority,
-  type,
-}) => {
+interface CardComponentProps {
+  cardProps: CardProps;
+  handleOnClickMoveCard: () => void;
+}
+
+const Card = ({ cardProps, handleOnClickMoveCard }: CardComponentProps) => {
+  const { id, title, assignee, priority, type } = cardProps;
+
   return (
     <div className="flex flex-col justify-center items-center mx-4 my-2">
       <div className="card w-48 bg-sky-400 text-primary-content rounded-none">
@@ -25,9 +26,18 @@ const Card: React.FunctionComponent<CardProps> = ({
             <span>
               {assignee} {priority}
             </span>
-            {type !== TodoCardType.DONE ? (
-              <button className="btn btn-sm"> Right </button>
-            ) : null}
+            {type !== TodoCardType.DONE && (
+              <button
+                className="btn btn-sm"
+                onClick={
+                  handleOnClickMoveCard !== undefined // need refactoring
+                    ? () => handleOnClickMoveCard()
+                    : undefined
+                }
+              >
+                Right
+              </button>
+            )}
           </p>
         </div>
       </div>
