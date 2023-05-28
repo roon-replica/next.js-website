@@ -16,6 +16,9 @@
     - [ ] todo-list 메인 화면
       - [x] 상단
       - [x] 할 일 목록 표시
+        - [ ] 정렬. 우선순위 > 옮긴순서에 따라 상단에 배치
+        - [x] 이동 버튼 아이콘으로 표시하기 (아이콘 적용했는데도 좀 안예쁨)
+        - [ ] 내용이 많든 적든 카드 크기 고정하기?
       - [ ] 할 일 삭제
       - [x] 할 일 이동
     - [ ] 할 일 등록 모달
@@ -53,6 +56,8 @@
 - [next.js](https://nextjs.org/docs/getting-started)
 - [typescript에서 fetch 사용하기](https://www.newline.co/@bespoyasov/how-to-use-fetch-with-typescript--a81ac257)
 - [tailwind 검색해서 쓰셈](https://tailwindcss.com/docs/font-size)
+
+---
 
 ### open api
 

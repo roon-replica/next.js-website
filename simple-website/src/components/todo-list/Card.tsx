@@ -1,6 +1,6 @@
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import PriorityType from "./constants/PriorityType";
 import TodoCardType from "./constants/TodoCardType";
-
 export interface CardProps {
   id: string;
   title: string;
@@ -23,19 +23,16 @@ const Card = ({ cardProps, handleOnClickMoveCard }: CardComponentProps) => {
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
           <p className="card-actions">
-            <span>
-              {assignee} {priority}
-            </span>
+            <span> 담당자: {assignee} </span>
+            <span> 우선순위: {priority} </span>
             {type !== TodoCardType.DONE && (
               <button
                 className="btn btn-sm"
-                onClick={
-                  handleOnClickMoveCard !== undefined // need refactoring
-                    ? () => handleOnClickMoveCard()
-                    : undefined
-                }
+                onClick={() => handleOnClickMoveCard()}
               >
-                Right
+                <div className="top-0 right-0 mt-1 mr-1">
+                  <ArrowRightIcon className="w-4 h-4 bg-red" />
+                </div>
               </button>
             )}
           </p>

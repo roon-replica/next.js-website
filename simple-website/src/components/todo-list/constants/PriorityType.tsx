@@ -1,7 +1,7 @@
 export enum PriorityType {
-  FIRST = "FIRST",
-  SECOND = "SECOND",
-  THIRD = "THIRD",
+  FIRST = 1,
+  SECOND = 2,
+  THIRD = 3,
 }
 
 export default PriorityType;
