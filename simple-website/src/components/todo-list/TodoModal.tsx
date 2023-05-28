@@ -36,6 +36,7 @@ const TodoModal: React.FunctionComponent<TodoModalProps> = ({ onSave }) => {
       assignee: assignee,
       priority: priority,
       type: TodoCardType.TODO,
+      createdAt: Date.now(),
     });
 
     closeModal();
@@ -85,6 +86,7 @@ const TodoModal: React.FunctionComponent<TodoModalProps> = ({ onSave }) => {
             </div>
 
             {/* 3. 우선순위 */}
+            {/* todo: 반복문으로 개선 */}
             <div className="mb-4">
               <label>
                 <p>우선순위를 선택하세요</p>

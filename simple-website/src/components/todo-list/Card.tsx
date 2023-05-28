@@ -7,6 +7,7 @@ export interface CardProps {
   assignee: string;
   priority: PriorityType;
   type: TodoCardType;
+  createdAt: number; // Date가 아니라 이렇게 쓰는게 맞을지
 }
 
 interface CardComponentProps {
@@ -15,16 +16,19 @@ interface CardComponentProps {
 }
 
 const Card = ({ cardProps, handleOnClickMoveCard }: CardComponentProps) => {
-  const { id, title, assignee, priority, type } = cardProps;
+  const { id, title, assignee, priority, type, createdAt } = cardProps;
+  const date = new Date(createdAt).toLocaleString();
 
   return (
     <div className="flex flex-col justify-center items-center mx-4 my-2">
       <div className="card w-48 bg-sky-400 text-primary-content rounded-none">
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
-          <p className="card-actions">
+          <div className="card-actions">
             <span> 담당자: {assignee} </span>
-            <span> 우선순위: {priority} </span>
+            <span> 우선순위: {priority}</span>
+            <span> 생성일자: {date}</span>
+
             {type !== TodoCardType.DONE && (
               <button
                 className="btn btn-sm"
@@ -35,7 +39,7 @@ const Card = ({ cardProps, handleOnClickMoveCard }: CardComponentProps) => {
                 </div>
               </button>
             )}
-          </p>
+          </div>
         </div>
       </div>
     </div>

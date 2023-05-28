@@ -14,4 +14,13 @@
 
 ### 4. Warning: Each child in a list should have a unique "key" prop.
 
--
+- key 값보고 렌더링 조작한다고 함.. 이거 안주면 레더링 이상하게 되는듯
+
+### 5. This JSX tag's 'children' prop expects a single child of type 'ReactNode', but multiple children were provided.
+
+- JSX는 렌더링할때 string이나 리액트 요소를 기대한다고 함.  
+  근데 new Date()하면 Date 객체 반환해서 오류난거..!
+
+### 6. TypeError: Cannot assign to read only property '0' of object '[object Array]'
+
+- 불변값은 변경안되니까 복사해서 사용해야 함

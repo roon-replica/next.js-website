@@ -38,6 +38,7 @@ const TodoColumn: React.FC<TodoColumnProps> = ({ todoList }) => {
             priority: todo.priority,
             type: todo.type,
             key: todo.id,
+            createdAt: todo.createdAt,
           };
 
           return (
@@ -49,6 +50,7 @@ const TodoColumn: React.FC<TodoColumnProps> = ({ todoList }) => {
           );
         })
       ) : (
+        // flex 오동작을 해결하기 위한 트릭!
         <div className="flex flex-col justify-center items-center mx-4 my-2 w-48">
           {/* <p>No cards</p> */}
         </div>

@@ -2,7 +2,7 @@ import { CardProps } from "@/components/todo-list/Card";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface TodoListState {
-    todoList: Array<CardProps> // todo, doing, done 따로 나눠서 관리하는게 나으려나??
+    todoList: Array<CardProps> // todo: todo, doing, done 따로 나눠서 관리하는게 나으려나??
 }
 
 const initialState: TodoListState = { 
