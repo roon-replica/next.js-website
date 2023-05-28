@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import CardHeader from "@/components/todo-list/CardHeader";
 import TodoCardType from "@/components/todo-list/constants/TodoCardType";
-import TodoModal from "@/components/todo-list/TodoModal";
+import TodoForm from "@/components/todo-list/TodoFormModal";
 
 // import { useAppDispatch } from "@/global-store/hooks";
 import { add } from "@/global-store/todo-list/todoSlice";
@@ -50,7 +50,7 @@ const Main = () => {
           headerTextClassName="flex flex-col ml-1 mt-4 text-xl transform -rotate-45 font-bold"
         />
 
-        <TodoModal onSave={createNewTodo} />
+        <TodoForm onSave={createNewTodo} />
       </div>
       <div className="flex flex-wrap">
         <CardHeader type={TodoCardType.TODO} />

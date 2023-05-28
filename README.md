@@ -13,28 +13,34 @@
 
 - write a simple website app with...
   - [todo-list 프로그램](https://docs.google.com/presentation/d/163ZmA14C4OGB85QnlXMOo9vO9KFN3YzXYbTYPW7wngs/edit#slide=id.p4)
-    - [ ] todo-list 메인 화면
-      - [x] 상단
-      - [x] 할 일 목록 표시
-        - [x] 정렬. 우선순위, 최신 작업 여부에 따라 상단에 배치
-        - [x] 이동 버튼 아이콘으로 표시하기 (아이콘 적용했는데도 좀 안예쁨)
-        - [ ] 내용이 많든 적든 카드 크기 고정하기?
-      - [ ] 할 일 삭제
-      - [x] 할 일 이동
-    - [ ] 할 일 등록 모달
-      - [x] 할 일 생성
-      - [ ] 할 일 수정
-      - [ ] 모달 validation
-        - [ ] 모든 필드 입력
-        - [ ] 입력 길이 제한 및 유효한 문자 검사
-    - 기타
+    - 기능
+      - [ ] todo-list 메인 화면
+        - [x] 상단
+        - [x] 할 일 목록 표시
+          - [x] 정렬. 우선순위, 최신 작업 여부에 따라 상단에 배치
+          - [x] 이동 버튼 아이콘으로 표시하기 (아이콘 적용했는데도 좀 안예쁨)
+          - [ ] 내용이 많든 적든 카드 크기 고정하기?
+        - [ ] 할 일 수정
+        - [ ] 할 일 삭제
+        - [x] 할 일 이동
+        - [ ] **할 일 카드에 애니메이션 넣어보기!?**
+      - [x] 할 일 등록 모달
+        - [x] 할 일 생성
+        - [x] 모달 validation
+          - [x] 모든 필드 입력
+          - [x] 입력 길이 제한 및 유효한 문자 검사
+    - 비기능
       - [x] redux 설정 (redux-toolkit, typescript)
-    - [ ] 화면 이외의 것들
-      - [ ] 단순 데이터 저장용 처리 서버 만들고, 서버로부터 데이터받는걸로 바꾸기
+      - [x] form 훅을 사용하도록 개선 (react-hook-form)
       - [ ] 환경변수 (local, local-docker, aws 환경)
+    - Backends
+      - [ ] 단순 데이터 저장용 처리 서버 만들고, 서버로부터 데이터받는걸로 바꾸기
       - [ ] 도커파일 작성해보기
       - [ ] aws 배포하기
       - [ ] github action workflow 작성해서 CI/CD 하기
+    - 구현한 화면
+      ![스크린샷 2023-05-28 오후 8 39 01](https://github.com/roon-replica/next.js-website/assets/100839953/d089406c-ecf9-492c-8f8f-032c1def1c7e)
+      ![스크린샷 2023-05-28 오후 6 50 05](https://github.com/roon-replica/next.js-website/assets/100839953/e3500c9b-3f48-4785-b8e1-9498d4470a09)
 
 ### 설정
 
@@ -56,6 +62,9 @@
 - [next.js](https://nextjs.org/docs/getting-started)
 - [typescript에서 fetch 사용하기](https://www.newline.co/@bespoyasov/how-to-use-fetch-with-typescript--a81ac257)
 - [tailwind 검색해서 쓰셈](https://tailwindcss.com/docs/font-size)
+- [daisy ui 검색해서 쓰셈](https://daisyui.com/components/radio/)
+- [react-hook-form](https://react-hook-form.com/get-started#Quickstart)
+- [react heroicons](https://github.com/tailwindlabs/heroicons)
 
 ---
 
