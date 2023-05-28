@@ -21,12 +21,14 @@ const Card = ({ cardProps, handleOnClickMoveCard }: CardComponentProps) => {
 
   return (
     <div className="flex flex-col justify-center items-center mx-4 my-2">
-      <div className="card w-48 bg-sky-400 text-primary-content rounded-none">
+      <div className="card w-96  bg-sky-400 text-primary-content rounded-none">
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
           <div className="card-actions">
-            <span> 담당자: {assignee} </span>
-            <span> 우선순위: {priority}</span>
+            <div className="flex">
+              <span className="mr-2">담당자: {assignee}</span>
+              <span>우선순위: {priority}</span>
+            </div>
             <span> 생성일자: {date}</span>
 
             {type !== TodoCardType.DONE && (
