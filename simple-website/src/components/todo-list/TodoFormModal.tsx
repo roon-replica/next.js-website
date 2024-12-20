@@ -106,22 +106,32 @@ const TodoForm: React.FunctionComponent<TodoFormProps> = ({ onSave }) => {
 
             {/* 2. 담당자 */}
             <div className="mb-4">
+              <label>
+                <p>담당자는 누구인가요?</p>
+              </label>
               {errors?.assignee?.type === "required" && (
-                <p className="alert alert-error shadow-lg h-1 text-sm rounded-none">
-                  This field is required
-                </p>
+                  <p className="alert alert-error shadow-lg h-1 text-sm rounded-none">
+                    This field is required
+                  </p>
               )}
-              <select
-                {...register("assignee", { required: true })}
-                value={assignee}
-                className="form-select w-full border border-gray-500 p-2 focus:outline-none focus:border-primary input input-bordered input-md"
-              >
-                <option value="">담당자를 선택하세요</option>
-                <option value="roon">roon</option>
-                <option value="BE Dev">BE Dev</option>
-                <option value="FE Dev">FE Dev</option>
-                <option value="App Dev">App Dev</option>
-              </select>
+              <input
+                  {...register("assignee", {required: true, maxLength: 30})}
+                  type="text"
+                  className="input input-bordered input-md border border-gray-300 p-2 focus:outline-none focus:border-primary"
+                  placeholder="담당자를 입력하세요"
+                  value={assignee}
+              />
+              {/*<select*/}
+              {/*  {...register("assignee", { required: true })}*/}
+              {/*  value={assignee}*/}
+              {/*  className="form-select w-full border border-gray-500 p-2 focus:outline-none focus:border-primary input input-bordered input-md"*/}
+              {/*>*/}
+              {/*  <option value="">담당자를 선택하세요</option>*/}
+              {/*  <option value="roon">roon</option>*/}
+              {/*  <option value="BE Dev">BE Dev</option>*/}
+              {/*  <option value="FE Dev">FE Dev</option>*/}
+              {/*  <option value="App Dev">App Dev</option>*/}
+              {/*</select>*/}
             </div>
 
             {/* 3. 우선순위 */}
