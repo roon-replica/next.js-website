@@ -17,8 +17,8 @@ const TodoColumn: React.FC<TodoColumnProps> = ({ todoList }) => {
 
     const updatedTodo = { ...selectedTodo };
     const cardTypeString = TodoCardType[updatedTodo.type + 1];
-    const cardType: TodoCardType =
-      TodoCardType[cardTypeString as keyof typeof TodoCardType]; // 이게 최선인가. 되게 번거롭고 뭐하는건지도 잘 모르겠음
+    // 이게 최선인가. 되게 번거롭고 뭐하는건지도 잘 모르겠음
+    const cardType: TodoCardType = TodoCardType[cardTypeString as keyof typeof TodoCardType];
 
     updatedTodo.type = cardType;
 

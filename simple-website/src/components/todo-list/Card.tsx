@@ -1,13 +1,14 @@
-import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { ArrowRightIcon } from "@heroicons/react/outline";
 import PriorityType from "./constants/PriorityType";
 import TodoCardType from "./constants/TodoCardType";
+
 export interface CardProps {
   id: string;
   title: string;
   assignee: string;
   priority: PriorityType;
   type: TodoCardType;
-  createdAt: number; // Date가 아니라 이렇게 쓰는게 맞을지
+  createdAt: number;
 }
 
 interface CardComponentProps {
@@ -16,35 +17,32 @@ interface CardComponentProps {
 }
 
 const Card = ({ cardProps, handleOnClickMoveCard }: CardComponentProps) => {
-  const { id, title, assignee, priority, type, createdAt } = cardProps;
+  const { title, assignee, priority, type, createdAt } = cardProps;
   const date = new Date(createdAt).toLocaleString();
 
   return (
-    <div className="flex flex-col justify-center items-center mx-4 my-2">
-      <div className="card w-96  bg-sky-400 text-primary-content rounded-none">
-        <div className="card-body">
-          <h2 className="card-title">{title}</h2>
-          <div className="card-actions">
-            <div className="flex">
-              <span className="mr-2">담당자: {assignee}</span>
-              <span>우선순위: {priority}</span>
+      <div className="flex flex-col justify-center items-center mx-4 my-2" data-theme="cozy">
+        <div className="card w-96 bg-info text-primary-content rounded-none p-2 shadow-lg">
+          <div className="card-body">
+            <h2 className="card-title text-lg font-bold mb-2">{title}</h2>
+            <div className="card-actions mb-2">
+              <div className="flex flex-col space-y-1">
+                <span className="font-medium">담당자: {assignee}</span>
+                <span className="font-medium">우선순위: {priority}</span>
+                <span className="font-medium">생성일자: {date}</span>
+              </div>
             </div>
-            <span> 생성일자: {date}</span>
-
             {type !== TodoCardType.DONE && (
-              <button
-                className="btn btn-sm"
-                onClick={() => handleOnClickMoveCard()}
-              >
-                <div className="top-0 right-0 mt-1 mr-1">
-                  <ArrowRightIcon className="w-4 h-4 bg-red" />
-                </div>
-              </button>
+                <button
+                    className="btn btn-sm bg-primary text-primary-content mt-2"
+                    onClick={handleOnClickMoveCard}
+                >
+                  <ArrowRightIcon className="w-4 h-4" />
+                </button>
             )}
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

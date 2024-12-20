@@ -10,6 +10,10 @@ import {CardProps} from "@/components/todo-list/Card";
 import TodoColumn from "@/components/todo-list/TodoColumn";
 
 import {useAppDispatch, useAppSelector} from "@/global-store/hooks";
+import React from "react";
+import Link from "next/link";
+import {ArrowLeftIcon, ArrowRightIcon} from "@heroicons/react/outline";
+import {ArrowSmLeftIcon} from "@heroicons/react/solid";
 
 const Main = () => {
     const dispatch = useAppDispatch();
@@ -43,13 +47,17 @@ const Main = () => {
     };
 
     return (
-        <div className="min-h-screen p-6">
-            <div className="mb-7 flex flex-wrap items-center">
+        <div className="min-h-screen p-6" data-theme="cozy">
+            <div className="flex justify-between items-center mb-7">
+                <Link href="/" className="text-xl p-2 rounded-lg">
+                    <ArrowLeftIcon className="w-6 h-6" />
+                </Link>
+            </div>
+            <div className="mb-7 flex flex-wrap items-center ">
                 <Header
-                    header="나의 해야할 일들"
-                    headerTextClassName="flex flex-col ml-1 mt-4 text-xl transform font-italic"
+                    header="My Todo List"
+                    headerTextClassName="flex flex-col ml-1 mt-4 text-4xl transform font-italic"
                 />
-
                 <TodoForm onSave={createNewTodo}/>
             </div>
             <div className="flex flex-wrap">
