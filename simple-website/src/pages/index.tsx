@@ -35,14 +35,14 @@
 
 import React from "react";
 import Link from "next/link";
-import { ClipboardListIcon, ClockIcon } from "@heroicons/react/outline";
+import {ClockIcon} from "@heroicons/react/outline";
 import {PencilIcon} from "@heroicons/react/solid";
 
 export default function Home() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-center p-24" data-theme="cozy">
-            <h1 className="text-5xl font-bold">Welcome, Thanks for visit</h1>
-            <p className="text-2xl mt-2 mb-8">This website offers some useful tools such as to keep track of time efficiently</p>
+            <h1 className="text-5xl font-bold">Welcome. Thanks for visit</h1>
+            <p className="text-xl mt-2 mb-8">This website offers some useful tools.</p>
             <nav className="flex space-x-8">
                 <Link href="/stopwatch/main"
                       className="text-4xl bg-primary p-4 rounded-lg flex items-center space-x-2 hover:bg-primary-focus transition duration-300">

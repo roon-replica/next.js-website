@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {BackspaceIcon, PencilIcon, RefreshIcon} from "@heroicons/react/solid";
 
 const Drawing: React.FC = () => {
