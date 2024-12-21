@@ -27,6 +27,16 @@ const StopWatch: React.FC = () => {
         setLaps([...laps, seconds]);
     };
 
+    const splitLapsIntoColumns = (laps: number[], columnSize: number) => {
+        const columns = [];
+        for (let i = 0; i < laps.length; i += columnSize) {
+            columns.push(laps.slice(i, i + columnSize));
+        }
+        return columns;
+    };
+
+    const columns = splitLapsIntoColumns(laps, 10);
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-base-100 p-6">
             <div className="flex flex-col items-center mb-8 w-full">
@@ -46,15 +56,19 @@ const StopWatch: React.FC = () => {
                     </button>
                 </div>
             </div>
-            <div className="w-full max-w-md">
+            <div className="w-full max-w-4xl">
                 <h2 className="text-3xl font-bold mb-4">Laps</h2>
-                <ul className="list-decimal list-inside space-y-2">
-                    {laps.map((lap, index) => (
-                        <li key={index} className="text-2xl p-2 bg-gray-100 rounded-lg shadow-md">
-                            {lap.toFixed(2)}s
-                        </li>
+                <div className="flex space-x-4">
+                    {columns.map((column, columnIndex) => (
+                        <ul key={columnIndex} className="space-y-2 flex-1">
+                            {column.map((lap, lapIndex) => (
+                                <li key={lapIndex} className="text-2xl p-2 bg-gray-100 rounded-lg shadow-md">
+                                    {columnIndex * 10 + lapIndex + 1}. {lap.toFixed(2)}s
+                                </li>
+                            ))}
+                        </ul>
                     ))}
-                </ul>
+                </div>
             </div>
         </div>
     );

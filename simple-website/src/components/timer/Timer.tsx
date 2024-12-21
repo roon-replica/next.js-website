@@ -1,135 +1,138 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
+import { CountdownCircleTimer } from 'react-countdown-circle-timer';
+
+import alarmSound from "../../alarm.mp3";
 
 const Timer: React.FC = () => {
-    const [timerHours, setTimerHours] = useState(0);
-    const [timerMinutes, setTimerMinutes] = useState(0);
-    const [timerSeconds, setTimerSeconds] = useState(0);
-    const [isTimerActive, setIsTimerActive] = useState(false);
-    const [timeInput, setTimeInput] = useState("00:00:00");
+    const [targetHour, setTargetHour] = useState<number>(0);
+    const [targetMinute, setTargetMinute] = useState<number>(0);
+    const [targetSecond, setTargetSecond] = useState<number>(0);
+    const [isPlaying, setIsPlaying] = useState<boolean>(false);
+    const [key, setKey] = useState<number>(0); // Add a key state to force re-render
+    const [remainingTime, setRemainingTime] = useState<number>(0);
+    const alarmRef = useRef<HTMLAudioElement | null>(null);
 
-    useEffect(() => {
-        let interval: NodeJS.Timeout | null = null;
-        if (isTimerActive) {
-            interval = setInterval(() => {
-                setTimerSeconds((prevSeconds) => {
-                    if (prevSeconds <= 0) {
-                        if (timerMinutes > 0) {
-                            setTimerMinutes((prevMinutes) => prevMinutes - 1);
-                            return 59;
-                        } else if (timerHours > 0) {
-                            setTimerHours((prevHours) => prevHours - 1);
-                            setTimerMinutes(59);
-                            return 59;
-                        } else {
-                            clearInterval(interval!);
-                            setIsTimerActive(false);
-                            return 0;
-                        }
-                    }
-                    return prevSeconds - 1;
-                });
-            }, 1000);
-        } else if (!isTimerActive && (timerHours !== 0 || timerMinutes !== 0 || timerSeconds !== 0)) {
-            clearInterval(interval!);
+    const handleTargetHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = parseInt(e.target.value, 10);
+        if (value >= 0 && value < 24) {
+            setTargetHour(value);
         }
-        return () => clearInterval(interval!);
-    }, [isTimerActive, timerHours, timerMinutes, timerSeconds]);
+    };
+
+    const handleTargetMinuteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = parseInt(e.target.value, 10);
+        if (value >= 0 && value < 60) {
+            setTargetMinute(value);
+        }
+    };
+
+    const handleTargetSecondChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = parseInt(e.target.value, 10);
+        if (value >= 0 && value < 60) {
+            setTargetSecond(value);
+        }
+    };
 
     const resetTimer = () => {
-        setTimeInput("00:00:00");
-        setTimerHours(0);
-        setTimerMinutes(0);
-        setTimerSeconds(0);
-        setIsTimerActive(false);
+        setTargetHour(0);
+        setTargetMinute(0);
+        setTargetSecond(0);
+        setIsPlaying(false);
+        setKey(prevKey => prevKey + 1); // Increment key to force re-render
+
+        if (alarmRef.current) {
+            alarmRef.current.pause();
+            alarmRef.current.currentTime = 0;
+        }
     };
 
-    const handleTimeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setTimeInput(e.target.value);
-        const [hrs, mins, secs] = e.target.value.split(":").map(Number);
-        setTimerHours(hrs);
-        setTimerMinutes(mins);
-        setTimerSeconds(secs);
+    const totalDuration = targetHour * 3600 + targetMinute * 60 + targetSecond;
+
+    const formatTime = (remainingTime: number) => {
+        const hours = Math.floor(remainingTime / 3600);
+        const minutes = Math.floor((remainingTime % 3600) / 60);
+        const seconds = remainingTime % 60;
+        return `${String(hours).padStart(2, '0')} : ${String(minutes).padStart(2, '0')} : ${String(seconds).padStart(2, '0')}`;
     };
 
-    const calculateStrokeDashoffset = () => {
-        const radius = 90;
-        const circumference = 2 * Math.PI * radius;
-        const totalDuration = timerHours * 3600 + timerMinutes * 60 + timerSeconds;
-        const remainingTime = timerHours * 3600 + timerMinutes * 60 + timerSeconds;
-        const progress = remainingTime / totalDuration;
-        return circumference - progress * circumference;
-    };
-
-    const formatTime = () => {
-        const hrs = timerHours.toString().padStart(2, '0');
-        const mins = timerMinutes.toString().padStart(2, '0');
-        const secs = timerSeconds.toString().padStart(2, '0');
-        return `${hrs}:${mins}:${secs}`;
-    };
+    useEffect(() => {
+        if (remainingTime === 0 && isPlaying) {
+            alarmRef.current = new Audio(alarmSound);
+            alarmRef.current.play();
+        }
+    }, [remainingTime, isPlaying]);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-base-100 p-6">
-            <h1 className="text-3xl font-bold mb-4">Timer</h1>
-            <div className="gauge-container mb-4">
-                <svg className="gauge" width="200" height="200">
-                    <circle
-                        className="gauge-bg"
-                        cx="100"
-                        cy="100"
-                        r="90"
-                        strokeWidth="20"
+            <div className="mb-4 flex space-x-2">
+                <div className="flex flex-col items-center">
+                    <label htmlFor="hour" className="mb-1">Hour</label>
+                    <input
+                        id="hour"
+                        type="number"
+                        value={targetHour}
+                        onChange={handleTargetHourChange}
+                        min="0"
+                        max="23"
+                        className="input input-bordered w-24 text-center p-4"
+                        placeholder="HH"
                     />
-                    <circle
-                        className="gauge-progress"
-                        cx="100"
-                        cy="100"
-                        r="90"
-                        strokeWidth="20"
-                        strokeDasharray="565.48"
-                        strokeDashoffset={calculateStrokeDashoffset()}
+                </div>
+                <div className="flex flex-col items-center">
+                    <label htmlFor="minute" className="mb-1">Minute</label>
+                    <input
+                        id="minute"
+                        type="number"
+                        value={targetMinute}
+                        onChange={handleTargetMinuteChange}
+                        min="0"
+                        max="59"
+                        className="input input-bordered w-24 text-center p-4"
+                        placeholder="MM"
                     />
-                </svg>
-                <div className="text-4xl font-bold">{formatTime()}</div>
+                </div>
+                <div className="flex flex-col items-center">
+                    <label htmlFor="second" className="mb-1">Second</label>
+                    <input
+                        id="second"
+                        type="number"
+                        value={targetSecond}
+                        onChange={handleTargetSecondChange}
+                        min="0"
+                        max="59"
+                        className="input input-bordered w-24 text-center p-4"
+                        placeholder="SS"
+                    />
+                </div>
             </div>
-            <div className="flex space-x-4">
-                <button
-                    className={`btn btn-lg ${isTimerActive ? 'btn-warning' : 'btn-success'}`}
-                    onClick={() => setIsTimerActive(!isTimerActive)}
-                >
-                    {isTimerActive ? 'Pause' : 'Start'}
-                </button>
-                <button className="btn btn-lg btn-error" onClick={resetTimer}>
-                    Reset
-                </button>
-            </div>
+            <CountdownCircleTimer
+                key={key} // Use key to force re-render
+                isPlaying={isPlaying}
+                duration={totalDuration}
+                size={400}
+                colors={['#004777', '#F7B801', '#A30000', '#A30000']}
+                colorsTime={[totalDuration, totalDuration * 0.75, totalDuration * 0.5, 0]}
+                onComplete={() => setIsPlaying(true)}
+            >
+                {({ remainingTime }) => {
+                    setRemainingTime(remainingTime);
+                    return <div className="text-4xl font-bold">{formatTime(remainingTime)}</div>;
+                }}
+            </CountdownCircleTimer>
             <div className="mt-4">
-                <input
-                    type="text"
-                    className="input input-bordered w-40"
-                    value={timeInput}
-                    onChange={handleTimeInputChange}
-                    placeholder="HH:MM:SS"
-                />
+                <button
+                    className="btn btn-lg btn-success m-2"
+                    onClick={() => setIsPlaying(true)}
+                >
+                    Start Timer
+                </button>
+                <button
+                    className="btn btn-lg btn-error"
+                    onClick={resetTimer}
+                >
+                    Reset Timer
+                </button>
             </div>
-            <style jsx>{`
-                .gauge-container {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                }
-                .gauge {
-                    transform: rotate(-90deg);
-                }
-                .gauge-bg {
-                    fill: none;
-                    stroke: #e6e6e6;
-                }
-                .gauge-progress {
-                    fill: none;
-                    stroke: #333;
-                    transition: stroke-dashoffset 0.1s ease-in-out;
-                }
-            `}</style>
         </div>
     );
 };
