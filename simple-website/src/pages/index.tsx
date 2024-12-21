@@ -36,19 +36,29 @@
 import React from "react";
 import Link from "next/link";
 import { ClipboardListIcon, ClockIcon } from "@heroicons/react/outline";
+import {PencilIcon} from "@heroicons/react/solid";
 
 export default function Home() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-center p-24" data-theme="cozy">
-            <h1 className="text-4xl font-bold mb-8">Welcome, Thanks for visit</h1>
+            <h1 className="text-5xl font-bold">Welcome, Thanks for visit</h1>
+            <p className="text-2xl mt-2 mb-8">This website offers some useful tools such as to keep track of time efficiently</p>
             <nav className="flex space-x-8">
-                <Link href="/stopwatch/main" className="text-4xl bg-primary p-4 rounded-lg flex items-center space-x-2 hover:bg-primary-focus transition duration-300">
+                <Link href="/stopwatch/main"
+                      className="text-4xl bg-primary p-4 rounded-lg flex items-center space-x-2 hover:bg-primary-focus transition duration-300">
                     <ClockIcon className="w-8 h-8"/>
                     <div>StopWatch</div>
                 </Link>
-                <Link href="/timer/main" className="text-4xl bg-primary p-4 rounded-lg flex items-center space-x-2 hover:bg-primary-focus transition duration-300">
+                {/*<p className="text-2xl font-bold mb-8 mt-5">AND</p>*/}
+                <Link href="/timer/main"
+                      className="text-4xl bg-primary p-4 rounded-lg flex items-center space-x-2 hover:bg-primary-focus transition duration-300">
                     <ClockIcon className="w-8 h-8"/>
                     <div>Timer</div>
+                </Link>
+                <Link href="/drawing/main"
+                      className="text-4xl bg-primary p-4 rounded-lg flex items-center space-x-2 hover:bg-primary-focus transition duration-300">
+                    <PencilIcon className="w-8 h-8"/>
+                    <div>Drawing</div>
                 </Link>
             </nav>
         </main>
